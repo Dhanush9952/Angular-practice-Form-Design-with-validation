@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { NgModel } from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-register',
@@ -11,6 +11,10 @@ export class RegisterComponent implements OnInit {
 
   mobileNumber!: number; 
   constructor() { }
+  
+   public ageFromDateOfBirthday(dateOfBirth: any): number {
+    return moment().diff(dateOfBirth, 'years');
+  }
 
   ngOnInit(): void {
   }
@@ -40,4 +44,11 @@ export class RegisterComponent implements OnInit {
 
   }
 
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+    let inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode != 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
+  }
 }

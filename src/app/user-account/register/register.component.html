@@ -41,9 +41,7 @@
         </mat-grid-tile>
         <mat-grid-tile>
             <mat-form-field appearance="fill" class="phone">
-                <!-- <input type="tel" matInput placeholder="Eg:9789631819"> -->
-                <input type="tel" matInput placeholder="Eg:9386823455" pattern="/(7|8|9)\d{9}/" required>
-                <div *ngIf=""></div>
+                <input type="tel" matInput placeholder="Eg:9875854761" (keypress)="keyPress($event)">
                 <mat-label>Contact Number</mat-label>
             </mat-form-field>
         </mat-grid-tile>
@@ -56,7 +54,8 @@
                         [matDatepicker]="resultPicker" 
                         [(ngModel)]="date"
                         [min]="minDate" 
-                        [max]="maxDate">
+                        [max]="maxDate"
+                         (input)="ageFromDateOfBirthday($event)">
                 <mat-datepicker-toggle matSuffix [for]="resultPicker"></mat-datepicker-toggle>
                 <mat-datepicker #resultPicker>
                 </mat-datepicker>
@@ -72,21 +71,23 @@
             </mat-form-field>
         </mat-grid-tile>
 
-        <mat-grid-tile>7</mat-grid-tile>
+        <mat-grid-tile>
+            <input type="tel" matInput placeholder="Eg:9789631819"> 
+        </mat-grid-tile>
         <mat-grid-tile>
             <mat-form-field appearance="fill" class="age">
                 <mat-label>Age</mat-label>
-                <input type="number" matInput>
+                <input type="number" matInput >
             </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile>9</mat-grid-tile>
-        <mat-grid-tile>10</mat-grid-tile>
+        <mat-grid-tile>😎</mat-grid-tile>
+        <mat-grid-tile>😎</mat-grid-tile>
         <mat-grid-tile>
             <button mat-raised-button>Reset</button>
             <span></span>
             <button mat-raised-button>Submit</button>
         </mat-grid-tile>
-        <mat-grid-tile>12</mat-grid-tile>
+        <mat-grid-tile>😎</mat-grid-tile>
     </mat-grid-list>
 
     <div class="example-container">
