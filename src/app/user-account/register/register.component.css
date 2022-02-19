@@ -1,0 +1,42 @@
+h2{
+
+}
+/* :host {
+    display: flex;
+    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  } */
+.example-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.example-container .mat-form-field {
+  width: 280px;
+}
+.example-container-password .mat-form-field{
+    width: 320px;
+}
+.example-container-email .mat-form-field{
+    width: 320px;
+}
+.container{
+    text-align: center;
+}
+mat-grid-tile {
+  overflow: auto;
+  background: rgb(252, 253, 253);
+}
+span{
+  padding: 20px;
+}
+hr{
+  border: 1px solid grey;
+}
+.phone{
+  width: 230px;
+}
+.email{
+  width: 230px;
+}
