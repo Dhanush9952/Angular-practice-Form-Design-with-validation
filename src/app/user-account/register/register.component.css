@@ -1,5 +1,7 @@
-h2{
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+.headfont{
+  font-family: "Open Sans Bold", sans-serif;
+  font-weight: 800;
 }
 /* :host {
     display: flex;
@@ -34,9 +36,8 @@ span{
 hr{
   border: 1px solid grey;
 }
-.phone{
+.phone, .age, .datepicker, .email{
   width: 230px;
 }
-.email{
-  width: 230px;
-}
+
+

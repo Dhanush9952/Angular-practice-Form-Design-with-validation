@@ -1,7 +1,6 @@
-
 <div class="container">
     <span></span>
-    <h2>USER REGISTRATION FORM</h2>
+    <h2 class="headfont">USER REGISTRATION FORM</h2>
     <hr>
     <mat-grid-list cols="3" rowHeight="3:1">
 
@@ -50,47 +49,37 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
-            <mat-form-field appearance="fill">
-                <mat-label>Date Of Birth</mat-label>
-                <input matInput [matDatepicker]="picker" [max]="maxDate">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <!-- <mat-error *ngIf="resultPickerModel.hasError('matDatepickerParse')">
-                    "{{resultPickerModel.getError('matDatepickerParse').text}}"
-                     is not a valid date!
-                  </mat-error> -->
-              </mat-form-field>
-        </mat-grid-tile>
-
-        <mat-grid-tile>
-            <mat-form-field>
+            <mat-form-field class="datepicker">
                 <mat-label>Pick a date</mat-label>
-                <input matInput
-                       #resultPickerModel="ngModel"
-                       [matDatepicker]="resultPicker"
-                       [(ngModel)]="date"
-                       [min]="minDate"
-                       [max]="maxDate">
+                <input matInput 
+                        #resultPickerModel="ngModel" 
+                        [matDatepicker]="resultPicker" 
+                        [(ngModel)]="date"
+                        [min]="minDate" 
+                        [max]="maxDate">
+                <mat-datepicker-toggle matSuffix [for]="resultPicker"></mat-datepicker-toggle>
                 <mat-datepicker #resultPicker>
                 </mat-datepicker>
                 <mat-error *ngIf="resultPickerModel.hasError('matDatepickerParse')">
-                  "{{resultPickerModel.getError('matDatepickerParse').text}}"
-                   is not a valid date!
+                    "{{resultPickerModel.getError('matDatepickerParse').text}}"
+                    is not a valid date!
                 </mat-error>
                 <mat-error *ngIf="resultPickerModel.hasError('matDatepickerMin')">
-                  Minimum date should be {{maxDate | date }}</mat-error>
+                    Minimum date should be {{minDate | date }}</mat-error>
                 <mat-error *ngIf="resultPickerModel.hasError('matDatepickerMax')">
-                  Maximum date should be {{maxDate | date }}
-                </mat-error>    
-              </mat-form-field>
+                    Maximum date should be {{maxDate | date }}
+                </mat-error>
+            </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile>8</mat-grid-tile>
+
+        <mat-grid-tile>7</mat-grid-tile>
         <mat-grid-tile>
-            <mat-form-field appearance="fill">
+            <mat-form-field appearance="fill" class="age">
                 <mat-label>Age</mat-label>
-                <input type="number" matInput >
-              </mat-form-field>
+                <input type="number" matInput>
+            </mat-form-field>
         </mat-grid-tile>
+        <mat-grid-tile>9</mat-grid-tile>
         <mat-grid-tile>10</mat-grid-tile>
         <mat-grid-tile>
             <button mat-raised-button>Reset</button>
@@ -98,8 +87,8 @@
             <button mat-raised-button>Submit</button>
         </mat-grid-tile>
         <mat-grid-tile>12</mat-grid-tile>
-      </mat-grid-list>
-      
+    </mat-grid-list>
+
     <div class="example-container">
 
 

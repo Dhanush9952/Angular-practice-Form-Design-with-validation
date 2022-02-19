@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
-      return 'You must enter a value';
+      return 'You must enter an Email-Id';
     }
     return this.email.hasError('email') ? 'Not a valid email' : '';
   }
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
   
   date : any;
   resultPickerModel!: any;
-  minDate = new Date(1600,1,1);
+  minDate = new Date(1800,1,1);
   maxDate = new Date(2022,1,18);
   hasError(){
 
