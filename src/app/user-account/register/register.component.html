@@ -1,13 +1,15 @@
 <div class="container">
     <span></span>
-    <h2 class="headfont">USER REGISTRATION FORM</h2>
+    <h2 class="headfont">REGISTRATION FORM (MAT-GRID & MAT-FORM-FIELD)</h2>
     <hr>
+    
+    <div class="form-group">
     <mat-grid-list cols="3" rowHeight="3:1">
 
         <mat-grid-tile>
             <mat-form-field appearance="fill">
                 <mat-label>First Name</mat-label>
-                <input matInput placeholder="Enter your Firstname">
+                <input matInput placeholder="Enter your Firstname" autocomplete="on">
                 <mat-icon matSuffix>person</mat-icon>
                 <mat-hint>Aplhabets/Numeric</mat-hint>
             </mat-form-field>
@@ -30,19 +32,27 @@
         </mat-grid-tile>
         <mat-grid-tile>
             <mat-form-field appearance="fill">
-                <mat-label>Password*</mat-label>
-                <input matInput [type]="hide ? 'password' : 'text'">
+                <mat-label>Password</mat-label>
+                <input matInput 
+                        [type]="hide ? 'password' : 'text'" 
+                        [formControl]="password" required>
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
                     [attr.aria-pressed]="hide">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
-                <mat-hint>8-10 Characters Long</mat-hint>
+                <!-- <mat-hint>8-10 Characters Long</mat-hint> -->
+                <mat-error *ngIf="password.invalid">{{getErrorMessageForPassword()}}</mat-error>
             </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
             <mat-form-field appearance="fill" class="phone">
-                <input type="tel" matInput placeholder="Eg:9875854761" (keypress)="keyPress($event)">
+                <input type="tel" matInput 
+                                    placeholder="Eg:9875854761" 
+                                    (keypress)="keyPress($event)" 
+                                    maxlength="10" 
+                                    [formControl]="phone" required>
                 <mat-label>Contact Number</mat-label>
+                <mat-error *ngIf="phone.invalid">{{getErrorMessageForPhone()}}</mat-error>
             </mat-form-field>
         </mat-grid-tile>
 
@@ -52,10 +62,10 @@
                 <input matInput 
                         #resultPickerModel="ngModel" 
                         [matDatepicker]="resultPicker" 
+                        (keypress)="keyPress($event)"
                         [(ngModel)]="date"
                         [min]="minDate" 
-                        [max]="maxDate"
-                         (input)="ageFromDateOfBirthday($event)">
+                        [max]="maxDate">
                 <mat-datepicker-toggle matSuffix [for]="resultPicker"></mat-datepicker-toggle>
                 <mat-datepicker #resultPicker>
                 </mat-datepicker>
@@ -72,28 +82,33 @@
         </mat-grid-tile>
 
         <mat-grid-tile>
-            <input type="tel" matInput placeholder="Eg:9789631819"> 
+            <!-- <input type="tel" matInput placeholder="Eg:9789631819" maxlength="10">  -->
+            <mat-form-field appearance="fill" class="age">
+                <mat-label>Year</mat-label>
+                <input type="number" matInput [(ngModel)]="val">
+            </mat-form-field>
         </mat-grid-tile>
         <mat-grid-tile>
             <mat-form-field appearance="fill" class="age">
                 <mat-label>Age</mat-label>
-                <input type="number" matInput >
+                <input #geek type="number" matInput [(ngModel)]="calc">
             </mat-form-field>
         </mat-grid-tile>
-        <mat-grid-tile>😎</mat-grid-tile>
-        <mat-grid-tile>😎</mat-grid-tile>
         <mat-grid-tile>
-            <button mat-raised-button>Reset</button>
+            <!-- geek refers to the input element; pass it to an event handler -->
+            <button mat-raised-button  (click)="ageCalc()">Calculate</button>
+        </mat-grid-tile>
+        <mat-grid-tile>{{calc}}</mat-grid-tile>
+        <mat-grid-tile>
+            <button mat-raised-button input type="reset">Reset</button>
             <span></span>
             <button mat-raised-button>Submit</button>
         </mat-grid-tile>
-        <mat-grid-tile>😎</mat-grid-tile>
+        <mat-grid-tile></mat-grid-tile>
     </mat-grid-list>
+</div>
 
     <div class="example-container">
-
-
-
 
         <div class="example-container-email">
 
@@ -108,3 +123,109 @@
         </div>
     </div>
 </div>
+<hr>
+<h1 class="header2">REGISTRATION FORM (CSS-Grids)</h1>
+<hr>
+<form>
+<div class="wrapper">
+    <div class="firstname">
+        <mat-form-field appearance="fill">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="Enter your Firstname" autocomplete="on">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>Aplhabets/Numeric</mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="lastname">
+        <mat-form-field appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput placeholder="Enter your Lastname">
+            <mat-icon matSuffix>person</mat-icon>
+            <mat-hint>Alphabets/Numeric</mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="emailID">
+        <mat-form-field appearance="fill" class="email">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="abc@mail.com" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="password">
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput 
+                    [type]="hide ? 'password' : 'text'" 
+                    [formControl]="password" required>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <!-- <mat-hint>8-10 Characters Long</mat-hint> -->
+            <mat-error *ngIf="password.invalid">{{getErrorMessageForPassword()}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="mobile">
+        <mat-form-field appearance="fill" class="phone">
+            <input type="tel" matInput 
+                                placeholder="Eg:9875854761" 
+                                (keypress)="keyPress($event)" 
+                                maxlength="10" 
+                                [formControl]="phone" required>
+            <mat-label>Contact Number</mat-label>
+            <mat-error *ngIf="phone.invalid">{{getErrorMessageForPhone()}}</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="dateofbirth">
+        <mat-form-field class="datepicker">
+            <mat-label>Pick a date</mat-label>
+            <input matInput 
+                    #resultPickerModel="ngModel" 
+                    [matDatepicker]="resultPicker" 
+                    (keypress)="keyPress($event)"
+                    [(ngModel)]="date"
+                    [min]="minDate" 
+                    [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="resultPicker"></mat-datepicker-toggle>
+            <mat-datepicker #resultPicker>
+            </mat-datepicker>
+            <mat-error *ngIf="resultPickerModel.hasError('matDatepickerParse')">
+                "{{resultPickerModel.getError('matDatepickerParse').text}}"
+                is not a valid date!
+            </mat-error>
+            <mat-error *ngIf="resultPickerModel.hasError('matDatepickerMin')">
+                Minimum date should be {{minDate | date }}</mat-error>
+            <mat-error *ngIf="resultPickerModel.hasError('matDatepickerMax')">
+                Maximum date should be {{maxDate | date }}
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill" class="age">
+            <mat-label>Year</mat-label>
+            <input type="number" matInput [(ngModel)]="val2">
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill" class="age">
+            <mat-label>Age</mat-label>
+            <input type="number" matInput [(ngModel)]="calc2">
+        </mat-form-field>
+    </div>
+    <div>
+        <button mat-raised-button (click)="ageCalc2()">Calculate</button>
+    </div>
+    <div></div>
+    <div class="btn">
+        <button mat-raised-button id="reset" input type="reset">Reset</button>
+        <button mat-raised-button id="submit">Submit</button>
+    </div>
+    <div>
+        <!-- <mat-form-field appearance="fill" class="age">
+            <mat-label>Age</mat-label>
+            <input #geek type="number" matInput [(ngModel)]="calc">
+        </mat-form-field> -->
+    </div>
+    
+</div>
+</form>
